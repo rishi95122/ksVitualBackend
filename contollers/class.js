@@ -45,11 +45,12 @@ export const enrollClass = async (req, res) => {
 const{user}=req.body
   try {
     const classId = req.params.id;
-console.log(classId)
+
     const enrolled =await  User.findById(user?._id)
     enrolled.enrolledClasses.push(classId)
    
     await enrolled.save()
+    console.log(enrolled)
     res.status(200).json(enrolled);
   } catch (error) {
     res.status(400).json({ message: error.message });
